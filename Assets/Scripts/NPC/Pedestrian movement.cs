@@ -105,7 +105,7 @@ public class Pedestrianmovement : MonoBehaviour
 
     // Checks to see if NPC is in Dizzy state or not
 
-    void EnterDizzyState()
+    public void EnterDizzyState()
     {
         if (currentState != PedestrianState.Walking)
             return;
@@ -140,7 +140,7 @@ public class Pedestrianmovement : MonoBehaviour
 
     // Checks to see if NPC is in slipped state or not
 
-    void EnterSlippedState()
+    public void EnterSlippedState()
     {
         if (currentState != PedestrianState.Walking)
             return;
