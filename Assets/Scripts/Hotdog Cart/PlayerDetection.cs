@@ -5,28 +5,34 @@ public class PlayerDetection : MonoBehaviour
 {
 [Header("Bools")]
     public bool CanInteract;
+    public bool CanPressUpgradeButton;
 
 [Header("Interaction Settings")] 
     public InputActionReference interact;
+    public InputActionReference upgradeButtonKey;
 
 [Header("UI Settings")]
     public GameObject interactionUI;
-    public GameObject upgradeUI;
+    public GameObject upgradeButton;
 
 [Header("Player Positioning Settings")]
     public Transform player;
     public Transform playerSide;
+
+//[Header("Hotdog stand Settings")]
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         CanInteract = false;
+        CanPressUpgradeButton = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CanInteract == true) // when player is in range of the hotdog cart, show the interaction UI
+        if(CanInteract == true) // when player is in range of the hotdog cart, show the interact UI
         {
             interactionUI.SetActive(true);
         }
@@ -39,6 +45,13 @@ public class PlayerDetection : MonoBehaviour
         {
             Debug.Log("I Interacted!");
             MovePlayer(); 
+            interactionUI.SetActive(false); // hide the interact UI when player presses E
+            CanInteract = false;
+        }
+        if(CanPressUpgradeButton == true && CanInteract == true && upgradeButtonKey.action.triggered) // testing out
+        {
+            Debug.Log("I Pressed Button!");
+             
         }
     }
 
@@ -57,16 +70,26 @@ public class PlayerDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player")) // for hotdot cart
         {
-            CanInteract = true;
+            CanInteract = true; 
         }    
+
+        if(other.gameObject.CompareTag("Player")) // for upgrade button (this is here temperarily)
+        {
+            CanPressUpgradeButton = true;
+        }  
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
             CanInteract = false;
-        }    
+        }  
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+            CanPressUpgradeButton = false;
+        }   
     }
 }
