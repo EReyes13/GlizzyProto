@@ -1,5 +1,6 @@
 // using System.Numerics;
 
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         newCameraRotation.x = Mathf.Clamp(newCameraRotation.x,-90,90);
-        rb.linearVelocity = new Vector3(moveInput.x * movemult, rb.linearVelocity.y,moveInput.y * movemult);
+        rb.linearVelocity = move*movemult;
         transform.localRotation = Quaternion.Euler(newCameraRotation *Sensitivity);
         
      
@@ -50,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Jump");
             rb.AddForce(new Vector3(0,200,0));
+            
         }
     }
 
