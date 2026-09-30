@@ -636,6 +636,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 781116654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &562554648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562554649}
+  m_Layer: 0
+  m_Name: Throw Hotdog Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562554649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562554648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0.986}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1655436397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &781116653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -707,9 +738,6 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -7884623725977030818, guid: 9402457fce0b041e19b8afd9a4d76183, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1899587509}
-    - targetCorrespondingSourceObject: {fileID: -7884623725977030818, guid: 9402457fce0b041e19b8afd9a4d76183, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1898476309}
     - targetCorrespondingSourceObject: {fileID: -7884623725977030818, guid: 9402457fce0b041e19b8afd9a4d76183, type: 3}
       insertIndex: -1
@@ -720,6 +748,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7884623725977030818, guid: 9402457fce0b041e19b8afd9a4d76183, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1575814550}
+    - targetCorrespondingSourceObject: {fileID: -7884623725977030818, guid: 9402457fce0b041e19b8afd9a4d76183, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1137984505}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3635885740058425899, guid: 9402457fce0b041e19b8afd9a4d76183, type: 3}
       insertIndex: -1
@@ -751,9 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplenishAmmo
   replenishRate: 2
-  isReplenishing: 0
   replenishAmount: 5
-  hotdogAmount: 0
+  isReplenishing: 0
   hotdogAmmo: {fileID: 1655436398}
 --- !u!65 &781116659
 BoxCollider:
@@ -970,6 +1000,80 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: bd40434d17f45114d9f0e0b8974fd56d, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1137984504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137984505}
+  - component: {fileID: 1137984507}
+  - component: {fileID: 1137984506}
+  m_Layer: 0
+  m_Name: Player Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1137984505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137984504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0089, y: 0, z: 0}
+  m_LocalScale: {x: 0.056953546, y: 0.036448345, z: 0.006270653}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 781116654}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1137984506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137984504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc765879ee29c4d17a46530fa24f4ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetection
+  CanInteract: 0
+  CanPressUpgradeButton: 0
+  interact: {fileID: -1117557175394569078, guid: 172449be072e8eb45940fe523ed1b89d, type: 3}
+  upgradeButtonKey: {fileID: 3706436210105017470, guid: 172449be072e8eb45940fe523ed1b89d, type: 3}
+  interactionUI: {fileID: 1898476308}
+  upgradeButton: {fileID: 1575814549}
+  player: {fileID: 1655436397}
+  playerSide: {fileID: 520077218}
+--- !u!65 &1137984507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137984504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1441161888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1235,7 @@ GameObject:
   - component: {fileID: 1655436392}
   - component: {fileID: 1655436391}
   - component: {fileID: 1655436398}
+  - component: {fileID: 1655436399}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1269,6 +1374,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 78d88d91-d128-4465-ab8c-320194113d0e
     m_ActionName: 'Gameplay/Upgrade Button[/Keyboard/u]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dafc1c63-3782-42b5-8f09-c58581c06f26
+    m_ActionName: 'Gameplay/Throw[/Keyboard/t]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Gameplay
@@ -1361,6 +1470,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330585546}
+  - {fileID: 562554649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1655436398
@@ -1378,6 +1488,24 @@ MonoBehaviour:
   currentAmmo: 0
   maxAmmo: 15
   hotdogAmmo: {fileID: 6896416243157651362, guid: f4f8901b0a4714a7dadb7d8cd3e15da5, type: 3}
+--- !u!114 &1655436399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655436390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4f81fae845c4064b07403cf21a04e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThrowHotdog
+  throwForce: 10
+  Throw: {fileID: -5639054240088629241, guid: 172449be072e8eb45940fe523ed1b89d, type: 3}
+  throwPosition: {fileID: 562554649}
+  hotdogPrefab: {fileID: 6896416243157651362, guid: f4f8901b0a4714a7dadb7d8cd3e15da5, type: 3}
+  rb: {fileID: -8882280790206550778, guid: f4f8901b0a4714a7dadb7d8cd3e15da5, type: 3}
+  hotdogAmmo: {fileID: 1655436398}
 --- !u!1 &1836856348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,139 +1649,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898476308}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1899587508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1899587509}
-  - component: {fileID: 1899587513}
-  - component: {fileID: 1899587512}
-  - component: {fileID: 1899587511}
-  - component: {fileID: 1899587510}
-  m_Layer: 0
-  m_Name: Detector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1899587509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899587508}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.0093, y: 0, z: -0.00006666586}
-  m_LocalScale: {x: 0.05218807, y: 0.006874842, z: 0.037446205}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 781116654}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1899587510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899587508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc765879ee29c4d17a46530fa24f4ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetection
-  CanInteract: 0
-  CanPressUpgradeButton: 0
-  interact: {fileID: -1117557175394569078, guid: 172449be072e8eb45940fe523ed1b89d, type: 3}
-  upgradeButtonKey: {fileID: 3706436210105017470, guid: 172449be072e8eb45940fe523ed1b89d, type: 3}
-  interactionUI: {fileID: 1898476308}
-  upgradeButton: {fileID: 1575814549}
-  player: {fileID: 1655436397}
-  playerSide: {fileID: 520077218}
---- !u!65 &1899587511
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899587508}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1899587512
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899587508}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1899587513
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899587508}
-  m_Mesh: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

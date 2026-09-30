@@ -23,4 +23,9 @@ public class HotdogAmmo : MonoBehaviour
     {
         currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
     }
+
+    public void UseAmmo(int amount) // this function is called when the player uses ammo
+    {
+        currentAmmo = Mathf.Clamp(currentAmmo - amount, 0, maxAmmo);
+    }
 }
