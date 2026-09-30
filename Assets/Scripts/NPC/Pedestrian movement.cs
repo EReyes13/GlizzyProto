@@ -212,7 +212,7 @@ public class Pedestrianmovement : MonoBehaviour
     {
         currentState = PedestrianState.Recovering;
 
-        // Remember EXACTLY where the NPC currently is
+        // Remember exactly where the NPC currently is
         recoveryStartRotation = transform.localRotation;
 
         recoveryTargetRotation = Quaternion.Euler(
