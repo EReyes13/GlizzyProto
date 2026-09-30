@@ -17,10 +17,7 @@ public class PlayerDetection : MonoBehaviour
 
 [Header("Player Positioning Settings")]
     public Transform player;
-    public Transform playerSide;
-
-//[Header("Hotdog stand Settings")]
-    
+    public Transform playerSide;    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
