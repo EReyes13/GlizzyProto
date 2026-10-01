@@ -7,6 +7,7 @@ public class Pedestrianmovement : MonoBehaviour
     public enum PedestrianState
     {
         Walking,
+        WaitingAtCart,
         Dizzy,
         Slipped,
         Recovering
@@ -23,8 +24,17 @@ public class Pedestrianmovement : MonoBehaviour
 
     public Transform pointA;
     public Transform pointB;
+    public Transform HotDogCart;
 
     
+    public float cartVisitChance = 0.33f; // 33% chance
+
+    
+    public float cartWaitTime = 7f;
+
+    private bool goingToCart = false;
+    private float cartWaitTimer = 0f;
+
     public GameObject Valuable;
 
     private NavMeshAgent agent;
@@ -53,6 +63,11 @@ public class Pedestrianmovement : MonoBehaviour
             WalkingState();
         }
 
+        if (currentState == PedestrianState.WaitingAtCart)
+        {
+            WaitingAtCartState();
+        }
+
         if (currentState == PedestrianState.Dizzy)
         {
             DizzyState();
@@ -68,14 +83,14 @@ public class Pedestrianmovement : MonoBehaviour
             RecoveringState();
         }
 
-        // test button H key for when NPC gets dizzy
+        // Test button H key for when NPC gets dizzy
         if (Keyboard.current != null &&
             Keyboard.current.hKey.wasPressedThisFrame)
         {
             EnterDizzyState();
         }
 
-        // test button J key for when NPC slips
+        // Test button J key for when NPC slips
         if (Keyboard.current != null &&
             Keyboard.current.jKey.wasPressedThisFrame)
         {
@@ -83,13 +98,37 @@ public class Pedestrianmovement : MonoBehaviour
         }
     }
 
-    // NPC will walk from point A to Point B in a loop
-
+    // NPC walks between Point A and Point B and has a chance to walk to the hotdog cart
+    
     void WalkingState()
     {
         if (!agent.pathPending &&
             agent.remainingDistance <= agent.stoppingDistance)
         {
+            // NPC has arrived at the hot dog cart
+            if (goingToCart)
+            {
+                agent.isStopped = true;
+
+                cartWaitTimer = 0f;
+                currentState = PedestrianState.WaitingAtCart;
+
+                return;
+            }
+
+            // Random chance to visit the hot dog cart
+            if (HotDogCart != null &&
+                Random.value < cartVisitChance)
+            {
+                goingToCart = true;
+
+                currentTarget = HotDogCart;
+                agent.SetDestination(currentTarget.position);
+
+                return;
+            }
+
+            // Continue walking state point A to B if not visiting the hot dog cart
             if (currentTarget == pointA)
             {
                 currentTarget = pointB;
@@ -103,8 +142,27 @@ public class Pedestrianmovement : MonoBehaviour
         }
     }
 
-    // Checks to see if NPC is in Dizzy state or not
+    // NPC waits at the hot dog cart
+    void WaitingAtCartState()
+    {
+        cartWaitTimer += Time.deltaTime;
 
+        if (cartWaitTimer >= cartWaitTime)
+        {
+            cartWaitTimer = 0f;
+            goingToCart = false;
+
+            currentState = PedestrianState.Walking;
+
+            agent.isStopped = false;
+
+            // After visiting the cart, resume walking state
+            currentTarget = pointB;
+            agent.SetDestination(currentTarget.position);
+        }
+    }
+
+    // Checks to see if NPC is in Dizzy state or not
     public void EnterDizzyState()
     {
         if (currentState != PedestrianState.Walking)
@@ -114,13 +172,12 @@ public class Pedestrianmovement : MonoBehaviour
 
         agent.isStopped = true;
 
-        
         DropItem();
 
         Invoke(nameof(ExitDizzyState), dizzyDuration);
     }
 
-    // NPC will be dizzy, rotating the x and z axis
+    // NPC will be dizzy, rotating the X and Z axis
     void DizzyState()
     {
         float xRotation = Mathf.Sin(Time.time * 5f) * 25f;
@@ -139,7 +196,6 @@ public class Pedestrianmovement : MonoBehaviour
     }
 
     // Checks to see if NPC is in slipped state or not
-
     public void EnterSlippedState()
     {
         if (currentState != PedestrianState.Walking)
@@ -192,7 +248,7 @@ public class Pedestrianmovement : MonoBehaviour
         }
         else
         {
-            // Stay in horizontal position while waiting to recover to vertical position
+            // Stay horizontal while waiting to recover
             transform.localRotation = Quaternion.Euler(
                 90f,
                 slipStartYRotation,
@@ -207,12 +263,10 @@ public class Pedestrianmovement : MonoBehaviour
     }
 
     // Starts the recovery process rotating the NPC back up
-
     void StartRecovering()
     {
         currentState = PedestrianState.Recovering;
 
-        // Remember exactly where the NPC currently is
         recoveryStartRotation = transform.localRotation;
 
         recoveryTargetRotation = Quaternion.Euler(
@@ -224,7 +278,7 @@ public class Pedestrianmovement : MonoBehaviour
         recoveryTimer = 0f;
     }
 
-    // Rotates the NPC back to an upright position over time and then makes them walk again
+    // Rotates the NPC back upright and makes them walk again
     void RecoveringState()
     {
         recoveryTimer += Time.deltaTime;
@@ -249,10 +303,9 @@ public class Pedestrianmovement : MonoBehaviour
         }
     }
 
-    // Creates one placeholder item above the NPC
+    // Creates one valuable item above the NPC
     void DropItem()
     {
-        
         if (Valuable != null)
         {
             Instantiate(
