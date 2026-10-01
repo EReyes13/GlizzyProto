@@ -1,5 +1,6 @@
 // using System.Numerics;
 
+using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,12 +10,16 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] InputActionAsset input;
+
+    [SerializeField] Transform cameraDirection;
     Rigidbody rb;
     Vector2 moveInput;
 
     Vector2 mouseInput;
 
     Vector3 newCameraRotation;
+
+    float vert;
 
     public float movemult;
 
@@ -39,20 +44,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        newCameraRotation.x = Mathf.Clamp(newCameraRotation.x,-90,90);
-        rb.linearVelocity = move*movemult;
-        transform.localRotation = Quaternion.Euler(newCameraRotation *Sensitivity);
+      
+            vert -= 10*Time.deltaTime;
         
-     
+        // Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        newCameraRotation.x = Mathf.Clamp(newCameraRotation.x,-90,90);
+        // rb.linearVelocity = move*movemult;
+        transform.localRotation = Quaternion.Euler(newCameraRotation *Sensitivity);
+        playerMovement = cameraDirection.TransformDirection(new Vector3(moveInput.x,0,moveInput.y)).normalized;
+        
+       
+        rb.linearVelocity =new Vector3(playerMovement.x* movemult,Mathf.Clamp(vert,-3,3),playerMovement.z* movemult);
+         Debug.Log(rb.linearVelocity.y);
     }
     public void Jump(InputAction.CallbackContext cntxt)
     {
         if(cntxt.started)
         {
             Debug.Log("Jump");
-            rb.AddForce(new Vector3(0,200,0));
-            
+           vert = 5;
         }
     }
 
