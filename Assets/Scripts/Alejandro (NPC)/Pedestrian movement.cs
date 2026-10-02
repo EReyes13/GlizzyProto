@@ -26,16 +26,15 @@ public class Pedestrianmovement : MonoBehaviour
     public Transform pointB;
     public Transform HotDogCart;
 
-    
     public float cartVisitChance = 0.33f; // 33% chance
 
-    
     public float cartWaitTime = 7f;
 
     private bool goingToCart = false;
     private float cartWaitTimer = 0f;
 
-    public GameObject Valuable;
+    
+    public GameObject[] Valuables;
 
     private NavMeshAgent agent;
     private Transform currentTarget;
@@ -98,8 +97,7 @@ public class Pedestrianmovement : MonoBehaviour
         }
     }
 
-    // NPC walks between Point A and Point B and has a chance to walk to the hotdog cart
-    
+    // NPC walks between Point A and Point B and has a chance to walk to the hot dog cart
     void WalkingState()
     {
         if (!agent.pathPending &&
@@ -128,7 +126,7 @@ public class Pedestrianmovement : MonoBehaviour
                 return;
             }
 
-            // Continue walking state point A to B if not visiting the hot dog cart
+            // Continue walking state Point A to B if not visiting the hot dog cart
             if (currentTarget == pointA)
             {
                 currentTarget = pointB;
@@ -172,6 +170,7 @@ public class Pedestrianmovement : MonoBehaviour
 
         agent.isStopped = true;
 
+        // Drop one random valuable
         DropItem();
 
         Invoke(nameof(ExitDizzyState), dizzyDuration);
@@ -205,7 +204,7 @@ public class Pedestrianmovement : MonoBehaviour
 
         agent.isStopped = true;
 
-        // Drop an item when the NPC slips
+        // Drop one random valuable when the NPC slips
         DropItem();
 
         slipCurrentRotation = 0f;
@@ -303,13 +302,19 @@ public class Pedestrianmovement : MonoBehaviour
         }
     }
 
-    // Creates one valuable item above the NPC
+    // Creates a random valuable item above the NPC from the array
     void DropItem()
     {
-        if (Valuable != null)
+        if (Valuables != null && Valuables.Length > 0)
         {
+            
+            int randomIndex = Random.Range(0, Valuables.Length);
+
+            GameObject randomValuable = Valuables[randomIndex];
+
+            
             Instantiate(
-                Valuable,
+                randomValuable,
                 transform.position + Vector3.up,
                 Quaternion.identity
             );
