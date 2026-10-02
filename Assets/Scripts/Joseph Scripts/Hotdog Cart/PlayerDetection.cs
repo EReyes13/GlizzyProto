@@ -27,29 +27,29 @@ public class PlayerDetection : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(CanInteract == true) // when player is in range of the hotdog cart, show the interact UI
-        {
-            interactionUI.SetActive(true);
-        }
-        else
-        {
-            interactionUI.SetActive(false);
-        }
+    void Update() // this whole part work but will not show for prototype, will show for actual build
+    {   
+        // if(CanInteract == true) // when player is in range of the hotdog cart, show the interact UI
+        // {
+        //     interactionUI.SetActive(true);
+        // }
+        // else
+        // {
+        //     interactionUI.SetActive(false);
+        // } 
 
-        if(CanInteract == true && interact.action.triggered) // Move player behind cart if pressed E, Show 2 options to use the hotdog cart, and move the player to the side of the hotdog cart
-        {
-            Debug.Log("I Interacted!");
-            MovePlayer(); 
-            interactionUI.SetActive(false); // hide the interact UI when player presses E
-            CanInteract = false;
-        }
-        if(CanPressUpgradeButton == true && CanInteract == true && upgradeButtonKey.action.triggered) // testing out
-        {
-            Debug.Log("I Pressed Button!");
+        // if(CanInteract == true && interact.action.triggered) // Move player behind cart if pressed E, Show 2 options to use the hotdog cart, and move the player to the side of the hotdog cart
+        // {
+        //     Debug.Log("I Interacted!");
+        //     MovePlayer(); 
+        //     interactionUI.SetActive(false); // hide the interact UI when player presses E
+        //     CanInteract = false;
+        // }
+        // if(CanPressUpgradeButton == true && CanInteract == true && upgradeButtonKey.action.triggered) // testing out
+        // {
+        //     Debug.Log("I Pressed Button!");
              
-        }
+        // }
     }
 
     public void Interact(InputAction.CallbackContext cntxt) // When player presses E, this function is called
