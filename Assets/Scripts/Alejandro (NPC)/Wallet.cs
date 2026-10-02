@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour, IInteractable
 {
-    public Transform playerInventory;
+    public bool collectedWallet = false;
     public bool canInteract()
     {
         return true;
@@ -12,8 +12,11 @@ public class Wallet : MonoBehaviour, IInteractable
     {
         Debug.Log("Wallet interacted.");
 
-        transform.SetParent(playerInventory);
-        gameObject.SetActive(false); // hide the object in the world
+        collectedWallet = true; // set hasWallet to true when the player interacts with the wallet
+
+        BoxCollider boxCollider = GetComponent<BoxCollider>(); // get the BoxCollider component attached to the phone
+
+        boxCollider.enabled = false; // disable the box collider so the player cannot interact with the phone again
         return true;
     }
 }

@@ -960,6 +960,8 @@ MonoBehaviour:
   moneyEarnedText: {fileID: 788484943}
   moneyEarned: 0
   phonePrice: 100
+  ringPrice: 50
+  walletPrice: 200
 --- !u!1 &788484941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,6 +1882,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   hasPhone: 0
+  hasRing: 0
+  hasWallet: 0
 --- !u!1 &1835595482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,6 +2210,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 682174587}
+  - {fileID: 1836260869}
   - {fileID: 1655436397}
   - {fileID: 832575519}
   - {fileID: 1088083883}
@@ -2213,6 +2219,4 @@ SceneRoots:
   - {fileID: 231451999}
   - {fileID: 1441161889}
   - {fileID: 781116653}
-  - {fileID: 682174587}
-  - {fileID: 1836260869}
   - {fileID: 1119853609}
