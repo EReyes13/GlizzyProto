@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6348790580449974006}
   - component: {fileID: 2282100540006699834}
   - component: {fileID: 2283509189254558756}
+  - component: {fileID: -849783513232510802}
   m_Layer: 0
   m_Name: 'Valuable '
   m_TagString: Untagged
@@ -141,6 +142,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-849783513232510802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150205847119610171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d10814f5f8c5457f845a3a7b36fbec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmartPhone
 --- !u!1001 &2789135600100286852
 PrefabInstance:
   m_ObjectHideFlags: 0
