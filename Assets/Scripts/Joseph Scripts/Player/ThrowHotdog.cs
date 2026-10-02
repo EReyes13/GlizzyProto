@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,9 @@ public class ThrowHotdog : MonoBehaviour
     public GameObject hotdogPrefab;
 
     public HotdogAmmo hotdogAmmo; // reference to the HotdogAmmo script
+
+    //Elio var
+     int mult;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,6 +46,15 @@ public class ThrowHotdog : MonoBehaviour
 
     public void ThrowHotDog() // Throw hotdog
     {
-        Instantiate(hotdogPrefab, throwPosition.position, throwPosition.rotation);
+        mult = UnityEngine.Random.Range(0,10);
+        for(int i = 0; i < mult;i++ ){
+        GameObject Glizzy = Instantiate(hotdogPrefab, throwPosition.position , throwPosition.rotation);
+
+        GlickThrowScript Glick = Glizzy.GetComponent<GlickThrowScript>();
+        if(Glick!= null)
+        {
+            Glick.Sling(throwPosition.position, throwPosition.rotation);
+        }
+        }
     }
 }

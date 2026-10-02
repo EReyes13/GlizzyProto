@@ -76,6 +76,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14e0aadcdcfc4242b791569e918406c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2796702265299844275}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14e0aadcdcfc4242b791569e918406c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2134211750480445028}
   m_SourcePrefab: {fileID: 100100000, guid: d14e0aadcdcfc4242b791569e918406c, type: 3}
 --- !u!1 &6896416243157651362 stripped
 GameObject:
@@ -130,3 +133,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.3, y: 2.4121134, z: 10.343723}
   m_Center: {x: 0, y: 0.88, z: 0}
+--- !u!114 &-2134211750480445028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6896416243157651362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656a45ddae83ec74085b3ed2d2a826f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlickThrowScript

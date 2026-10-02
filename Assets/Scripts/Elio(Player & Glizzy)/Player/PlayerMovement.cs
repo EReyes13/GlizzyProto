@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         
        
         rb.linearVelocity =new Vector3(playerMovement.x* movemult,Mathf.Clamp(vert,-3,3),playerMovement.z* movemult);
-         Debug.Log(rb.linearVelocity.y);
+        //  Debug.Log(rb.linearVelocity.y);
     }
     public void Jump(InputAction.CallbackContext cntxt)
     {
